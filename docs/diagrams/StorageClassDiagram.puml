@@ -22,7 +22,6 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 Class JsonAdaptedRoom
 }
-
 }
 
 Class HiddenOutside #FFFFFF
