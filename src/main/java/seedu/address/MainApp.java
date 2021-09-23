@@ -23,11 +23,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 import seedu.address.model.tag.Tag;
@@ -101,13 +97,15 @@ public class MainApp extends Application {
                 new Phone("12345678"),
                 new Email("hello@world.com"),
                 new Address("COMPUTING DRIVE, SINGAPORE 123456"),
-                sampleTags1);
+                sampleTags1,
+                new Remark("Test remark 1"));
         Person person2 = new Person(
                 new Name("Blan"),
                 new Phone("87654321"),
                 new Email("goodbye@world.com"),
                 new Address("FASS DRIVE, SINGAPORE 852456"),
-                sampleTags2);
+                sampleTags2,
+                new Remark("Test remark 2"));
 
         room1.addPerson(person1);
         room1.addPerson(person2);
