@@ -211,6 +211,11 @@ public class AddressBookTest {
         public ReadOnlyResidencyBook getRecordsBook() {
             return recordsBook;
         }
+
+        @Override
+        public Optional<Residency> getResidency(Room room) {
+            return residencyBook.getResidency(room);
+        }
     }
 
 }
