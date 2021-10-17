@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -8,6 +9,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 
 /**
@@ -16,6 +19,7 @@ import seedu.address.model.room.Room;
 public class RoomListPanel extends UiPart<Region> {
     private static final String FXML = "RoomListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
+    private ReadOnlyAddressBook addressBook;
 
     @FXML
     private ListView<Room> roomListView;
@@ -23,8 +27,9 @@ public class RoomListPanel extends UiPart<Region> {
     /**
      * Creates a {@code RoomListPanel} with the given {@code ObservableList}.
      */
-    public RoomListPanel(ObservableList<Room> roomList) {
+    public RoomListPanel(ObservableList<Room> roomList, ReadOnlyAddressBook addressBook) {
         super(FXML);
+        this.addressBook = addressBook;
         roomListView.setItems(roomList);
         roomListView.setCellFactory(listView -> new RoomListViewCell());
     }
@@ -41,7 +46,8 @@ public class RoomListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new RoomCard(room, getIndex() + 1).getRoot());
+                Optional<Residency> roomResidency = addressBook.getResidency(room);
+                setGraphic(new RoomCard(room, getIndex() + 1, roomResidency).getRoot());
             }
         }
     }

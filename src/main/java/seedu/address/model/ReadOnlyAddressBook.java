@@ -1,5 +1,9 @@
 package seedu.address.model;
 
+
+
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.ReadOnlyResidencyBook;
@@ -46,4 +50,6 @@ public interface ReadOnlyAddressBook {
      * This will not contain any duplicate residencies.
      */
     ReadOnlyResidencyBook getRecordsBook();
+
+    Optional<Residency> getResidency(Room room);
 }

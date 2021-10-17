@@ -1,9 +1,13 @@
 package seedu.address.ui;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 
 /**
@@ -14,6 +18,7 @@ public class RoomCard extends UiPart<Region> {
     private static final String FXML = "RoomListCard.fxml";
 
     public final Room room;
+    public final Optional<Residency> residency;
     private final String testRoomNumber = "TES";
     private final String testRoomVacancy = "YENO";
 
@@ -37,15 +42,28 @@ public class RoomCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    @FXML
+    private Label guestList;
+
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
      */
-    public RoomCard(Room room, int displayedIndex) {
+    public RoomCard(Room room, int displayedIndex, Optional<Residency> residency) {
         super(FXML);
         this.room = room;
+        this.residency = residency;
         id.setText(displayedIndex + ". ");
         number.setText(room.getRoomNumber().value);
         vacancy.setText(room.getVacancy().toString());
+        if (residency.isPresent()) {
+            guestList.setText(residency.get().getGuests()
+                    .stream()
+                    .map(guest -> guest.getName().toString())
+                            .collect(Collectors.toUnmodifiableList())
+                    .toString());
+        } else {
+            guestList.setText("None");
+        }
     }
 
     @Override

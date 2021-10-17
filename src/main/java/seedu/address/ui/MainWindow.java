@@ -117,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList(), logic.getAddressBook());
         roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -185,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -192,6 +193,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            //force refresh of rooms list, maybe change to only force on edit commandresult
+            roomListPanel = new RoomListPanel(logic.getFilteredRoomList(), logic.getAddressBook());
+            roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

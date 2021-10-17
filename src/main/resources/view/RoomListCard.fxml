@@ -33,6 +33,10 @@
                 <Label fx:id="vacancy" text="\$vacancy" styleClass="cell_occupancy_label" />
             </HBox>
 
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label styleClass="cell_room_sub_label">Occupants: </Label>
+                <Label fx:id="guestList" text="\$guestList" styleClass="cell_occupancy_label" />
+            </HBox>
             <!--
             <FlowPane fx:id="tags" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
